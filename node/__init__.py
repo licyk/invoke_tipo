@@ -37,8 +37,8 @@ from kgen.executor.tipo import (
 
 
 
-logger.info(f"TIPO Model Dir: {models.model_dir}")
 models.model_dir = pathlib.Path(os.path.join(InvokeAIAppConfig.find_root(), "models", "kgen"))
+logger.info(f"TIPO Model Dir: {models.model_dir}")
 
 
 TIOP_MODEL_TYPES = Optional[Literal[
@@ -443,13 +443,13 @@ class TIPO(BaseInvocation):
         logger.info("Upscale Done")
         logger.info("TIPO Output Prompt:")
         print("====================================================================================================")
-        print(f"Prompt:\n{prompt}")
+        print(f"- Prompt:\n{prompt}")
         print("====================================================================================================")
-        print(f"User Prompt:\n{user_prompt}")
+        print(f"- User Prompt:\n{user_prompt}")
         print("====================================================================================================")
-        print(f"Unformatted Prompt:\n{unformatted_prompt}")
+        print(f"- Unformatted Prompt:\n{unformatted_prompt}")
         print("====================================================================================================")
-        print(f"Unformatted User Prompt:\n{unformatted_user_prompt}")
+        print(f"- Unformatted User Prompt:\n{unformatted_user_prompt}")
         print("====================================================================================================")
 
         return TipoPromptOutput(

@@ -7,6 +7,7 @@ from invokeai.invocation_api import BaseInvocation, InvocationContext, UICompone
 from invokeai.invocation_api import BaseInvocationOutput, invocation_output, OutputField
 from invokeai.app.services.config import InvokeAIAppConfig
 from invokeai.backend.util.logging import InvokeAILogger
+from invokeai.backend.util.devices import TorchDevice
 from ..utils import setup_llama_cpp, setup_kgen
 
 
@@ -187,7 +188,7 @@ class TipoPromptOutput(BaseInvocationOutput):
     title="TIPO",
     tags=["tipo", "prompt"],
     category="prompt",
-    version="1.0.0"
+    version="1.0.1"
 )
 class TIPO(BaseInvocation):
     """Prompt Upscale"""
@@ -293,7 +294,7 @@ class TIPO(BaseInvocation):
                 target = tipo_model
                 gguf = False
             try:
-                models.load_model(target, gguf, device="cuda")
+                models.load_model(target, gguf, device=TorchDevice.choose_torch_device())
             except:
                 models.load_model(target, gguf, device="cpu")
             # self.current_model = tipo_model

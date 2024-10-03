@@ -6,34 +6,17 @@ from typing import ClassVar, Literal, Optional
 from invokeai.invocation_api import BaseInvocation, InvocationContext, UIComponent, InputField, invocation
 from invokeai.invocation_api import BaseInvocationOutput, invocation_output, OutputField
 from invokeai.app.services.config import InvokeAIAppConfig
-import kgen.models as models
-from kgen.logging import logger
+from invokeai.backend.util.logging import InvokeAILogger
+from ..utils import setup_llama_cpp, setup_kgen
 
 
 
-logger.info("Loading TIPO Node")
-models.model_dir = pathlib.Path(os.path.join(InvokeAIAppConfig.find_root(), "models", "kgen"))
-logger.info(f"TIPO Model Dir: {models.model_dir}")
+invoke_logger = InvokeAILogger.get_logger(name='InvokeAI-TIPO')
+invoke_logger.info("Loading TIPO Node")
+invoke_logger.info("Check TIPO Requirements")
+setup_llama_cpp()
+setup_kgen()
 
-
-logger.info("Check LLaMA CPP")
-python_bin = sys.executable
-llama_cpp_python_wheel = (
-    "llama-cpp-python --prefer-binary "
-    "--extra-index-url=https://jllllll.github.io/llama-cpp-python-cuBLAS-wheels/{}/{}"
-)
-try:
-    import llama_cpp
-except Exception as e:
-    logger.info("Attempting to install LLaMA-CPP-Python")
-    import torch
-
-    has_cuda = torch.cuda.is_available()
-    cuda_version = torch.version.cuda.replace(".", "")
-    package = llama_cpp_python_wheel.format(
-        "AVX2", f"cu{cuda_version}" if has_cuda else "cpu"
-    )
-    os.system(f"\"{python_bin}\" -m pip install {package}")
 
 try:
     import llama_cpp
@@ -41,19 +24,10 @@ except Exception as e:
     llama_cpp = None
 
 
-logger.info("Check TIPO KGen")
-try:
-    import kgen
-
-    if kgen.__version__ < "0.1.2":
-        raise ImportError
-except Exception as e:
-    os.system(f"\"{python_bin}\" -m pip install -U \"tipo-kgen>=0.1.2\"")
-
-
-from kgen.formatter import seperate_tags, apply_format
-from kgen.metainfo import TARGET
+import kgen.models as models
 import kgen.executor.tipo as tipo
+from kgen.logging import logger
+from kgen.formatter import seperate_tags, apply_format
 from kgen.executor.tipo import (
     parse_tipo_request,
     tipo_runner,
@@ -61,6 +35,10 @@ from kgen.executor.tipo import (
     parse_tipo_result,
 )
 
+
+
+logger.info(f"TIPO Model Dir: {models.model_dir}")
+models.model_dir = pathlib.Path(os.path.join(InvokeAIAppConfig.find_root(), "models", "kgen"))
 
 
 TIOP_MODEL_TYPES = Optional[Literal[
@@ -480,3 +458,7 @@ class TIPO(BaseInvocation):
             unformatted_prompt=unformatted_prompt,
             unformatted_user_prompt=unformatted_user_prompt,
         )
+
+
+
+invoke_logger.info("Load TIPO Node Done")

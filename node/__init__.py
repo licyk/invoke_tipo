@@ -1,10 +1,17 @@
 import os
 import re
-import sys
 import pathlib
 from typing import ClassVar, Literal, Optional
-from invokeai.invocation_api import BaseInvocation, InvocationContext, UIComponent, InputField, invocation
-from invokeai.invocation_api import BaseInvocationOutput, invocation_output, OutputField
+from invokeai.invocation_api import (
+    BaseInvocation,
+    InvocationContext,
+    UIComponent,
+    BaseInvocationOutput,
+    InputField,
+    invocation,
+    invocation_output,
+    OutputField
+)
 from invokeai.app.services.config import InvokeAIAppConfig
 from invokeai.backend.util.logging import InvokeAILogger
 from invokeai.backend.util.devices import TorchDevice

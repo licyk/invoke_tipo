@@ -41,4 +41,4 @@ git clone https://github.com/licyk/invoke_tipo
 
 
 ## 鸣谢
-- [@KohakuBlueleaf](https://github.com/KohakuBlueleaf) - 提供 TIPO
+- [@KohakuBlueleaf](https://github.com/KohakuBlueleaf) - 提供 TIPO。

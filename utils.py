@@ -6,7 +6,6 @@ from invokeai.backend.util.logging import InvokeAILogger
 
 
 
-python_bin = sys.executable
 invoke_logger = InvokeAILogger.get_logger(name='InvokeAI-TIPO')
 
 
@@ -49,7 +48,7 @@ stderr: {result.stderr.decode(encoding="utf8", errors="ignore") if len(result.st
 
 
 def run_pip(command, desc=None, live=False):
-    return run(f'"{python_bin}" -m pip {command}', desc=f"Installing {desc}", errdesc=f"Couldn't install {desc}", live=live)
+    return run(f'"{sys.executable}" -m pip {command}', desc=f"Installing {desc}", errdesc=f"Couldn't install {desc}", live=live)
 
 
 def setup_llama_cpp():

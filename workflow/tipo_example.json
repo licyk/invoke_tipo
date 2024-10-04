@@ -76,7 +76,7 @@
       "data": {
         "id": "9c94536d-76d7-408f-96eb-1fd541bd6850",
         "type": "TIPO",
-        "version": "1.0.1",
+        "version": "1.0.2",
         "label": "",
         "notes": "",
         "isOpen": true,
@@ -87,7 +87,7 @@
           "tags": {
             "name": "tags",
             "label": "",
-            "value": "1girl,solo,\nazusa \\(blue archive\\),\nfuzichoco,torino aqua,rurudo,qys3,azuuru,miyase mahiro, tsunako,\noutdoors,park\n\n"
+            "value": "1girl,solo,\nazusa \\(blue archive\\),\nfuzichoco,torino aqua,rurudo,qys3,azuuru,miyase mahiro, tsunako,\nbow,navel,bare shoulders,swimsuit,flower,ahoge,bikini,frills,strapless,frilled bikini,bikini skirt,strapless bikini,blue nail polish,multicolored bikini,[pink bikini|blue bikini],multicolored clothes,purple bow,\nsea,water,ocean,hand up,index finger raised,head tilt,smile,\n\n\n"
           },
           "nl_prompt": {
             "name": "nl_prompt",
@@ -153,6 +153,11 @@
             "name": "seed",
             "label": "",
             "value": 1
+          },
+          "device": {
+            "name": "device",
+            "label": "",
+            "value": "Auto"
           }
         }
       },
@@ -572,8 +577,8 @@
         }
       },
       "position": {
-        "x": -4402.999911482939,
-        "y": -4295.508980199138
+        "x": -4406.798721938418,
+        "y": -4237.017273899221
       }
     }
   ],

@@ -39,6 +39,8 @@ git clone https://github.com/licyk/invoke_tipo
 
 在`invoke_tipo/workflow`中有示例工作流，可导入并使用。
 
+有关 TIPO 的参数请阅读：[KohakuBlueleaf/z-tipo-extension - Options](https://github.com/KohakuBlueleaf/z-tipo-extension?tab=readme-ov-file#options)。
+
 在运行工作流时，可从终端查看经过 TIPO 生成的提示词，例如。
 
 ```

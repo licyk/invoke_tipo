@@ -195,7 +195,7 @@ class TipoPromptOutput(BaseInvocationOutput):
     title="TIPO",
     tags=["tipo", "prompt"],
     category="prompt",
-    version="1.0.1"
+    version="1.0.2"
 )
 class TIPO(BaseInvocation):
     """Prompt Upscale"""
@@ -236,39 +236,43 @@ class TIPO(BaseInvocation):
     )
     width: Optional[int] = InputField(
         default=1024,
-        description=""
+        description="none"
     )
     height: Optional[int] = InputField(
         default=1024,
-        description=""
+        description="none"
     )
     temperature: Optional[float] = InputField(
         default=0.5,
-        description=""
+        description="adjust the degree of random"
     )
     top_p: Optional[float] = InputField(
         default=0.95,
-        description=""
+        description="adjust the degree of unconfident tokens"
     )
     min_p: Optional[float] = InputField(
         default=0.05,
-        description=""
+        description="adjust the degree of unconfident tokens"
     )
     top_k: Optional[int] = InputField(
         default=80,
-        description=""
+        description="adjust the degree of unconfident tokens"
     )
     tag_length: PROMPT_LENGTH_TYPES = InputField(
         default="long",
-        description=""
+        description="adjust tag length"
     )
     nl_length: PROMPT_LENGTH_TYPES = InputField(
         default="long",
-        description=""
+        description="adjust natural language length"
     )
     seed: Optional[int] = InputField(
         default=1,
-        description=""
+        description="seed for upsampling tags"
+    )
+    device: Optional[Literal["Auto", "CPU"]] = InputField(
+        default="Auto",
+        description="choice device to load tipo model"
     )
 
 
@@ -301,7 +305,11 @@ class TIPO(BaseInvocation):
                 target = tipo_model
                 gguf = False
             try:
-                models.load_model(target, gguf, device=TorchDevice.choose_torch_device())
+                models.load_model(
+                    target,
+                    gguf,
+                    device=TorchDevice.choose_torch_device() if self.device == "Auto" else "cpu"
+                )
             except:
                 models.load_model(target, gguf, device="cpu")
             # self.current_model = tipo_model

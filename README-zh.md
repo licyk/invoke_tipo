@@ -37,7 +37,52 @@ git clone https://github.com/licyk/invoke_tipo
 ## 使用
 进入 InvokeAI 的工作流中，在添加节点处搜索`TIPO`节点并添加。
 
-在`invoke_tipo/workflow`中可有示例工作流，可导入并使用。
+在`invoke_tipo/workflow`中有示例工作流，可导入并使用。
+
+在运行工作流时，可从终端查看经过 TIPO 生成的提示词，例如。
+
+```
+[TIPO-KGen]-|21:44:15|-INFO: Upscaling Prompt
+[TIPO-KGen]-|21:44:16|-INFO: Llama-cpp-python/gguf model TIPO-500M_TIPO-500M_epoch5-F16.gguf loaded
+[TIPO-KGen]-|21:44:20|-INFO: Upscale Done
+[TIPO-KGen]-|21:44:20|-INFO: TIPO Output Prompt:
+====================================================================================================
+- Prompt:
+1girl,
+azusa \(blue archive\),
+fuzichoco, torino aqua, rurudo, qys3, azuuru, miyase mahiro, tsunako,
+
+solo, outdoors, collarbone, halo, hair flower, crossed bangs, blurry, looking at viewer, flower, dress, park bench, bench, petticoat, pink flower, light particles, sidelocks, long sleeves, closed mouth, sitting, pink rose, hair between eyes, smile, frilled dress, day, feathered wings, long hair, white hair, very long hair, angel wings, black dress, tree, white wings, hair ornament, depth of field, school uniform, blush, blurry background, alternate costume, purple eyes, rose, wings, frills,
+
+A young girl with long white hair and blue eyes. she is wearing a black and white dress with a pink flower crown on her head. the dress has a ruffled skirt and a bow at the waist. she has large white wings that are spread out behind her. the background is filled with colorful flowers and leaves, creating a magical and whimsical atmosphere. the girl is sitting on a bench in a park or garden, with trees and bushes in the background. the overall mood of the image is peaceful and serene.
+====================================================================================================
+- User Prompt:
+1girl,
+azusa \(blue archive\),
+fuzichoco, torino aqua, rurudo, qys3, azuuru, miyase mahiro, tsunako,
+
+solo, outdoors, park,
+
+.
+====================================================================================================
+- Unformatted Prompt:
+1girl,solo,
+azusa \(blue archive\),
+fuzichoco,torino aqua,rurudo,qys3,azuuru,miyase mahiro, tsunako,
+outdoors,park
+
+, collarbone, halo, hair flower, crossed bangs, blurry, looking at viewer, flower, dress, park bench, bench, petticoat, pink flower, light particles, sidelocks, long sleeves, closed mouth, sitting, pink rose, hair between eyes, smile, frilled dress, day, feathered wings, long hair, white hair, very long hair, angel wings, black dress, tree, white wings, hair ornament, depth of field, school uniform, blush, blurry background, alternate costume, purple eyes, rose, wings, frills
+
+====================================================================================================
+- Unformatted User Prompt:
+1girl,solo,
+azusa \(blue archive\),
+fuzichoco,torino aqua,rurudo,qys3,azuuru,miyase mahiro, tsunako,
+outdoors,park
+
+
+====================================================================================================
+```
 
 
 ## 鸣谢

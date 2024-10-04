@@ -458,7 +458,7 @@ class TIPO(BaseInvocation):
         print(f"- Unformatted Prompt:\n{unformatted_prompt}")
         print("====================================================================================================")
         print(f"- Unformatted User Prompt:\n{unformatted_user_prompt}")
-        print("====================================================================================================")
+        print("====================================================================================================\n")
 
         return TipoPromptOutput(
             prompt=prompt,

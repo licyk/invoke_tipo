@@ -49,12 +49,14 @@ models.model_dir = pathlib.Path(os.path.join(InvokeAIAppConfig.find_root(), "mod
 logger.info(f"TIPO Model Dir: {models.model_dir}")
 
 
-TIOP_MODEL_TYPES = Optional[Literal[
-    "KBlueLeaf/TIPO-200M | TIPO-200M-40Btok-F16.gguf",
-    "KBlueLeaf/TIPO-500M | TIPO-500M_epoch5-F16.gguf",
-    "KBlueLeaf/TIPO-200M",
-    "KBlueLeaf/TIPO-500M"
-]]
+MODEL_NAME_LIST = [
+    f"{model_name} | {file}".strip("_")
+    for model_name, ggufs in models.tipo_model_list
+    for file in ggufs
+] + [i[0] for i in models.tipo_model_list]
+
+
+TIPO_MODEL_TYPES = Optional[Literal[tuple(MODEL_NAME_LIST)]]
 
 
 PROMPT_LENGTH_TYPES = Optional[Literal[
@@ -195,7 +197,7 @@ class TipoPromptOutput(BaseInvocationOutput):
     title="TIPO",
     tags=["tipo", "prompt"],
     category="prompt",
-    version="1.0.2"
+    version="1.0.3"
 )
 class TIPO(BaseInvocation):
     """Prompt Upscale"""
@@ -230,7 +232,7 @@ class TIPO(BaseInvocation):
         description="output tags format",
         ui_component=UIComponent.Textarea
     )
-    tipo_model: TIOP_MODEL_TYPES = InputField(
+    tipo_model: TIPO_MODEL_TYPES = InputField( # type: ignore
         default="KBlueLeaf/TIPO-200M | TIPO-200M-40Btok-F16.gguf",
         description="model type for prompt generation"
     )

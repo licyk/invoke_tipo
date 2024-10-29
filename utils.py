@@ -75,10 +75,11 @@ def setup_llama_cpp():
 
 def setup_kgen():
     invoke_logger.info("Check TIPO KGen")
+    kgen_ver = "0.1.4"
     try:
         import kgen
 
-        if kgen.__version__ < "0.1.2":
+        if kgen.__version__ < kgen_ver:
             raise ImportError
     except Exception as e:
-        run_pip(f"install -U tipo-kgen>=0.1.2", "tipo-kgen", live=True)
+        run_pip(f"install -U tipo-kgen>={kgen_ver}", "tipo-kgen", live=True)

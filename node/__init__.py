@@ -46,6 +46,7 @@ from kgen.executor.tipo import (
 
 
 models.model_dir = pathlib.Path(os.path.join(InvokeAIAppConfig.find_root(), "models", "kgen"))
+os.makedirs(models.model_dir, exist_ok=True)
 logger.info(f"TIPO Model Dir: {models.model_dir}")
 
 

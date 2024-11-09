@@ -75,7 +75,7 @@ def setup_llama_cpp():
 
 def setup_kgen():
     invoke_logger.info("Check TIPO KGen")
-    kgen_ver = "0.1.4"
+    kgen_ver = "0.1.5"
     try:
         import kgen
 

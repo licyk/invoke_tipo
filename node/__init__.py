@@ -707,6 +707,7 @@ class TIPOOperation(BaseInvocation):
         else:
             device = "cuda"
 
+        logger.info(f"Device: {device}")
         logger.info(f"Upscaling Prompt With Operation: {self.operation}")
         full_output, addon_output = self.execute(
             tipo_model=self.tipo_model,

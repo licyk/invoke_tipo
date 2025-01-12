@@ -16,15 +16,15 @@ from invokeai.app.services.config import InvokeAIAppConfig
 from invokeai.backend.util.logging import InvokeAILogger
 from invokeai.backend.util.devices import TorchDevice
 from pydantic import BaseModel, Field
-from ..utils import setup_llama_cpp, setup_kgen
+from ..utils import install_llama_cpp, install_tipo_kgen
 
 
 
 invoke_logger = InvokeAILogger.get_logger(name='InvokeAI-TIPO')
 invoke_logger.info("Loading TIPO Node")
 invoke_logger.info("Check TIPO Requirements")
-setup_llama_cpp()
-setup_kgen()
+install_llama_cpp()
+install_tipo_kgen()
 
 
 try:
